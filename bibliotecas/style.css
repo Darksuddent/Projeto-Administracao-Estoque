@@ -1,0 +1,36 @@
+div.tabela{
+    border-radius: 5px;
+    background-color: white;
+    width: 800px;
+    font-family: Arial;
+    margin: auto;
+    padding: 20px;
+}
+body{
+    background-color: rgb(104, 105, 159);
+}
+table.resultado{
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+table.resultado tr{
+    height: 50px;
+}
+table.resultado td{
+    padding: 10px;
+    text-align: center;
+}
+table.resultado tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+table.resultado td:nth-child(1){
+    width: 50px;
+}
+table.resultado td:nth-child(3){
+    width: 90px;
+}
+img.mini{
+    padding: 5px;
+    height: 80px;
+}
