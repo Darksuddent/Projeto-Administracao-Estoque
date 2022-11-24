@@ -10,6 +10,7 @@
 </head>
 <body>
     <div class='tabela'>
+        <?php include "topo.php"; ?>
         <table class='resultado'>
         <h1>Título tabela</h1>
         <tr><td>Foto<td>Nome<td>EAN<td>Tipo<td>Estoque <td>Validade <td> Custo Unitário <td>NCM<td>CEST<td> <a href='adicionar.php'><img src='bibliotecas/imagens/adicionar.png'></a>
@@ -37,7 +38,7 @@
                     <td> <input type='text' name='custo' value='$obj->custo'>
                     <td> <input type='text' name='ncm' value='$obj->ncm'>
                     <td> <input type='text' name='cest' value='$obj->cest'>
-                    <td> <input type='image' ' src='bibliotecas/imagens/editar.png' class='imagem' formmethod='post'>";
+                    <td> <input type='image' src='bibliotecas/imagens/editar.png' class='imagem' formmethod='post'>";
                 }
             }
         }

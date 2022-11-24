@@ -1,3 +1,11 @@
+div.corpo{
+    border-radius: 5px;
+    background-color: white;
+    width: 800px;
+    font-family: Arial;
+    margin: auto;
+    padding: 20px;
+}
 div.tabela{
     border-radius: 5px;
     background-color: white;
@@ -49,4 +57,8 @@ table.resultado td:nth-child(3){
 img.mini{
     padding: 5px;
     height: 80px;
+}
+p.pequeno {
+	font-size: 8pt;
+	text-align: right;
 }

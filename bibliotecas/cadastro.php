@@ -30,6 +30,6 @@ if($nome==null || $ean == null){
         echo "<script>alert(Error: ".$sql."<br>".$banco->error.")</script>";
     }
 }
-header('Location: ../index.php');
-exit();
+//header('Location: ../index.php');
+//exit();
 ?>
