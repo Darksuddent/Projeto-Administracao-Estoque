@@ -1,27 +1,35 @@
 <?php
 require_once "../connect.php";
+$id = $_POST['id'] ?? null;
+$nome = $_POST['nome'] ?? null ;
+$ean = $_POST['ean'] ?? null;
+$imagem = $_POST['imagem'] ?? null;
+$tipo = $_POST['tipo'] ?? null;
+$custo = $_POST['custo'] ?? null;
+$estoque = $_POST['estoque'] ?? null;
+$validade = $_POST['validade'] ?? null;
+$ncm = $_POST['ncm'] ?? null;
+$cest = $_POST['cest'] ?? null;
 
-$nome = $_POST['nome'];
-$ean = $_POST['ean'];
-$imagem = $_POST['imagem'];
-$tipo = $_POST['tipo'];
-$custo = $_POST['custo'];
-$estoque = $_POST['estoque'];
-$validade = $_POST['validade'];
-$ncm = $_POST['ncm'];
-$cest = $_POST['cest'];
-
-$query = "UPDATE banco SET nome = '$nome', ean = '$ean', tipo = '$tipo', ncm = '$ncm', cest = '$cest', estoque = '$estoque', validade = '$validade', custo = '$custo' WHERE (`ean` = '$ean');";
-if(is_null($nome) || is_null($ean)){
+if(empty($nome) || empty($ean)){
     echo "<script>alert('Variáveis não podem ser vazias.')</script>";
+}else if(empty($imagem)){
+    $query = "UPDATE teste.banco SET nome = '$nome', ean = '$ean', tipo = '$tipo', ncm = '$ncm', cest = '$cest', estoque = '$estoque', validade = '$validade', custo = '$custo' WHERE id = '$id';";
+    if($banco->query($query)){
+        header('Location: ../index.php');
+        exit();
+    }
+    else{
+        echo "<script>alert(Error: ".$sql."<br>".$banco->error.")</script>";
+    }
 }else{
-    if($banco->query($query) === TRUE){
-        echo "<script>alert(Alteração feita com sucesso)</script>";
+    $query = "UPDATE teste.banco SET imagem = '$imagem', nome = '$nome', ean = '$ean', tipo = '$tipo', ncm = '$ncm', cest = '$cest', estoque = '$estoque', validade = '$validade', custo = '$custo' WHERE id = '$id';";
+    if($banco->query($query)){
+        header('Location: ../index.php');
+        exit();
     }
     else{
         echo "<script>alert(Error: ".$sql."<br>".$banco->error.")</script>";
     }
 }
-header('Location: ../index.php');
-exit();
 ?>

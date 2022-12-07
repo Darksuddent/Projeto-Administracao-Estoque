@@ -15,7 +15,19 @@ div.tabela{
     padding: 20px;
 }
 input{
+    width: 45px;
+}
+input[type=file]{
     width: 55px;
+}
+input.nome{
+    width: 79px;
+}
+input.ean{
+    width: 78px;
+}
+input.estoque{
+    width: 25px;
 }
 input.imagem{
     padding: 5px;
@@ -47,12 +59,15 @@ table.resultado td{
 }
 table.resultado tr:nth-child(even){
     background-color: #f2f2f2;
+    max-width: 200px;
 }
 table.resultado td:nth-child(1){
     width: 50px;
+    max-width: 200px;
 }
 table.resultado td:nth-child(3){
     width: 90px;
+    max-width: 200px;
 }
 img.mini{
     padding: 5px;
@@ -61,4 +76,8 @@ img.mini{
 p.pequeno {
 	font-size: 8pt;
 	text-align: right;
+}
+img.supermini{
+    height: 20px;
+    padding: 1px;
 }

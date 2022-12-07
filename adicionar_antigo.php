@@ -17,7 +17,13 @@
         <div class="form_add">
             <h1>Adicionar Produto</h1>
             <form method="post" action="bibliotecas/cadastro.php">
-                Arquivo NFe: <input type="file" style='width: auto;' name="xml" id="xml" accept=".xml"><br><br>
+                Nome: <input type="text" name='nome'><br><br>
+                EAN: <input type="text" name='ean'><br><br>
+                Categoria: <select name="tipo" id="tipo">
+                    <option value="Teste 1">Teste 1</option>
+                    <option value="2 Teste">2 Teste</option>
+                    <option value="Test 3">Test 3</option>
+                </select><br><br>
                 Imagem: <input style='width: auto;' type="file" name='imagem' accept="image/png, image/jpeg"><br><br>
                 <input type="submit" formmethod="post" value="Confirmar">
             </form>
