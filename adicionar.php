@@ -18,7 +18,6 @@
             <h1>Adicionar Produto</h1>
             <form method="post" action="bibliotecas/cadastro.php">
                 Arquivo NFe: <input type="file" style='width: auto;' name="xml" id="xml" accept=".xml"><br><br>
-                Imagem: <input style='width: auto;' type="file" name='imagem' accept="image/png, image/jpeg"><br><br>
                 <input type="submit" formmethod="post" value="Confirmar">
             </form>
         </div>

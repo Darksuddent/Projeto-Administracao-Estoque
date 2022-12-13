@@ -34,29 +34,43 @@ $i = 0;
 
     
     $i = 0;
+    echo "<form action:'cadastro.php' method='post'><center><fieldset style='width: 800px; text-align: left; margin-left: 50px;'>
+        <legend>Quais produtos serão cadastrados?</legend>";
 while(true){
     
-    $nome = $data['xProd'] = (strval($children->NFe->infNFe->det[$i]->prod->xProd)) ?? null;
-    $ean = $data['cEAN'] = (strval($children->NFe->infNFe->det[$i]->prod->cEAN))?? null;
-    $ncm = $data['NCM'] = (strval($children->NFe->infNFe->det[$i]->prod->NCM))?? null;
-    $cest = $data['CEST'] = (strval($children->NFe->infNFe->det[$i]->prod->CEST))?? null;
+    $n[$i] = $data['xProd'] = (strval($children->NFe->infNFe->det[$i]->prod->xProd)) ?? null;
+    $e[$i] = $data['cEAN'] = (strval($children->NFe->infNFe->det[$i]->prod->cEAN))?? null;
+    $nc[$i] = $data['NCM'] = (strval($children->NFe->infNFe->det[$i]->prod->NCM))?? null;
+    $c[$i] = $data['CEST'] = (strval($children->NFe->infNFe->det[$i]->prod->CEST))?? null;
     //$quantidade = $data['uCom'] = (strval($children->NFe->infNFe->det->prod->uCom));
-    $tipo = $data['qCom'] = (strval($children->NFe->infNFe->det[$i]->prod->qCom))?? null;
-    $emis = $data['dhEmi'] = (strval($children->NFe->infNFe->ide->dhEmi))?? null;
+    $t[$i] = $data['qCom'] = (strval($children->NFe->infNFe->det[$i]->prod->qCom))?? null;
+    $em[$i] = $data['dhEmi'] = (strval($children->NFe->infNFe->ide->dhEmi))?? null;
+
+    $nome = $n[$i];
+    $ean = $e[$i];
+    $ncm = $nc[$i];
+    $cest = $c[$i];
+    $tipo = $t[$i];
+    $emis = $em[$i];
 
     $i++;
     if(is_null($nome) || empty($nome)){
         break;
     }else{
         $query = "INSERT INTO banco (nome, ean, tipo, ncm, cest,  emissao) VALUES ('$nome', '$ean', '$tipo', '$ncm', '$cest', '$emis')";
-            if($banco->query($query)){
+        echo "
+        <div>
+          <input type='checkbox' id='$nome' name='produtos' value='$nome' checked>
+          <label for='$nome'>$nome</label>
+        </div>
+    ";
+            /*if($banco->query($query)){
                 echo "O produto $nome foi inserido com sucesso!";
             }
             else{
                 echo "<script>alert(Error: ".$query."<br>".$banco->error.")</script>";
-            }
+            }*/
         }
     }
-    header("Location: ../index.php");
-    exit();
+    echo "</fieldset></center><input type='submit' value='Confirmar' style='text-align: left; margin-left: 700px; margin-top: 20px; font-size: 20px';></form>";
 ?>

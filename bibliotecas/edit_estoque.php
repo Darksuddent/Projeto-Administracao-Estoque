@@ -14,6 +14,9 @@ if($add == 1 && $sub == 0){
     $e += 1;
 }else if($add == 0 && $sub == 1){
     $e--;
+    if($e < 0){
+        $e++;
+    }
 }
 
 $query = "UPDATE banco SET estoque = '$e' WHERE id='$id'";

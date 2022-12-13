@@ -9,22 +9,26 @@ div.corpo{
 div.tabela{
     border-radius: 5px;
     background-color: white;
-    width: 800px;
+    width: 1200px;
     font-family: Arial;
     margin: auto;
     padding: 20px;
 }
 input{
     width: 45px;
+    font-size: 15px;
 }
 input[type=file]{
     width: 55px;
 }
 input.nome{
     width: 79px;
+    margin-right: 30px;
+    text-align: left;
 }
 input.ean{
-    width: 78px;
+    width: 100px;
+    margin-right: 40px;
 }
 input.estoque{
     width: 25px;
@@ -33,6 +37,11 @@ input.imagem{
     padding: 5px;
     height: 35px;
     width: 35px;
+}
+input.supermini{
+    height: 20px;
+    width:20px;
+    padding: 1px;
 }
 div.form_add{
     border-radius: 5px;
