@@ -5,58 +5,65 @@ include_once 'funcoes.php';
 
 //$imagem = thumb($_POST['imagem']);
 
-$arq = $_POST['xml'];
+/*$arq = $_POST['xml'];
 $xml= simplexml_load_file("../../../../XMLS/$arq");   
 if (!$xml) {
     echo "Verifique se o arquivo está na pasta XMLS";
+    echo $arq;
+    echo realpath($arq);
     exit;
 } 
 $children = $xml->children();
 
-$data = array();
-$prod = $_POST['produtos'];
-$i = 0;
-/*while($i < max($children->NFe->infNFe->det->prod[])){
-    $nome = $data['xProd'] = (strval($children->NFe->infNFe->det->prod[$i]->xProd));
-    $ean = $data['cEAN'] = (strval($children->NFe->infNFe->det->prod[$i]->cEAN));
-    $ncm = $data['NCM'] = (strval($children->NFe->infNFe->det->prod[$i]->NCM));
-    $cest = $data['CEST'] = (strval($children->NFe->infNFe->det->prod[$i]->CEST));
-    //$quantidade = $data['uCom'] = (strval($children->NFe->infNFe->det->prod->uCom));
-    $tipo = $data['qCom'] = (strval($children->NFe->infNFe->det->prod[$i]->qCom));
-    $emis = $data['dhEmi'] = (strval($children->NFe->infNFe->ide->dhEmi));
-    if(is_null($ean) || is_null($ncm) || is_null($cest) || is_null($nome) || is_null($tipo)){
-        $i = -1; 
-    }else{
-        $i = $i;
-    }
-    $i++;
-}*/
+$data = array();*/
 
-    
-    $i = 0;
-while(true){
-    
-    $nome = $data['xProd'] = (strval($children->NFe->infNFe->det[$i]->prod->xProd)) ?? null;
-    $ean = $data['cEAN'] = (strval($children->NFe->infNFe->det[$i]->prod->cEAN))?? null;
-    $ncm = $data['NCM'] = (strval($children->NFe->infNFe->det[$i]->prod->NCM))?? null;
-    $cest = $data['CEST'] = (strval($children->NFe->infNFe->det[$i]->prod->CEST))?? null;
-    //$quantidade = $data['uCom'] = (strval($children->NFe->infNFe->det->prod->uCom));
-    $tipo = $data['qCom'] = (strval($children->NFe->infNFe->det[$i]->prod->qCom))?? null;
-    $emis = $data['dhEmi'] = (strval($children->NFe->infNFe->ide->dhEmi))?? null;
+$i = $_POST['linhas'];
+$aux = 0;
+while($i>=$aux){
+    $n[$aux] = $_POST["nome".$aux.""];
+    $e[$aux] = $_POST["ean".$aux.""];
+    $nc[$aux] = $_POST["ncm".$aux.""];
+    $ce[$aux] = $_POST["cest".$aux.""];
+    $t[$aux] = $_POST["tipo".$aux.""];
+    $es[$aux] = $_POST["estoque".$aux.""];
+    $val[$aux] = $_POST["validade".$aux.""];
+    $cst[$aux] = $_POST["custo".$aux.""];
+    $emis = $_POST["emis"];
 
-    $i++;
+    $nome = $n[$aux];
+    $ean = $e[$aux];
+    $ncm = $nc[$aux];
+    $cest = $ce[$aux];
+    $tipo = $t[$aux];
+    $estoque = $es[$aux];
+    $validade = $val[$aux];
+    $custo = $cst[$aux];
+    $result = $banco->query("SELECT * FROM banco WHERE ean = '$ean'");
+    $obj = $result->fetch_object();
+
     if(is_null($nome) || empty($nome)){
         break;
-    }else{
-        $query = "INSERT INTO banco (nome, ean, tipo, ncm, cest,  emissao) VALUES ('$nome', '$ean', '$tipo', '$ncm', '$cest', '$emis')";
+    }else if(is_null($obj->ean)){
+        $query = "INSERT INTO banco (nome, ean, tipo, ncm, cest, emissao, estoque, custo, validade) VALUES ('$nome', '$ean', '$tipo', '$ncm', '$cest', '$emis', '$estoque', '$custo', '$validade')";
             if($banco->query($query)){
-                echo "O produto $nome foi inserido com sucesso!";
+                echo "O produto $nome foi inserido com sucesso!<br><br>";
+            }
+            else{
+                echo "<script>alert(Error: ".$query."<br>".$banco->error.")</script>";
+            }
+        }else{
+            $preco_antigo = $obj->custo;
+            $preco_novo = ($preco_antigo + $custo)/2;
+            $query = 'UPDATE banco SET estoque = estoque +'.$estoque.', custo = '.$preco_novo.' WHERE ean = '.$obj->ean.'';
+            if($banco->query($query)){
+                echo "O produto $nome foi adicionado ao estoque com sucesso!<br><br>";
             }
             else{
                 echo "<script>alert(Error: ".$query."<br>".$banco->error.")</script>";
             }
         }
-    }
-    header("Location: ../index.php");
-    exit();
+    $aux++;
+}
+header("Location: ../index.php");
+exit();
 ?>

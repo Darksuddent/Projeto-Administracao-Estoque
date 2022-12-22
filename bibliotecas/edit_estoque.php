@@ -2,6 +2,7 @@
 require_once "../connect.php";
 
 $add = $_GET['add'];
+$chave = $_GET['c'];
 $sub = $_GET['sub'];
 $id = $_GET['id'];
 $e = $_GET['e'];
@@ -22,6 +23,6 @@ if($add == 1 && $sub == 0){
 $query = "UPDATE banco SET estoque = '$e' WHERE id='$id'";
 
 if($banco->query($query)){
-    header("Location: ../index.php");
+    header("Location: ../index.php?c=$chave");
     exit();
 }

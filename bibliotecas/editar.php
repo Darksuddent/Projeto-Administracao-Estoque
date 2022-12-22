@@ -1,5 +1,6 @@
 <?php
 require_once "../connect.php";
+$chave = $_POST['c'];
 $id = $_POST['id'] ?? null;
 $nome = $_POST['nome'] ?? null ;
 $ean = $_POST['ean'] ?? null;
@@ -15,7 +16,7 @@ if(empty($nome) || empty($ean)){
 }else{
     $query = "UPDATE teste.banco SET nome = '$nome', ean = '$ean', tipo = '$tipo', ncm = '$ncm', cest = '$cest', estoque = '$estoque', validade = '$validade', custo = '$custo' WHERE id = '$id';";
     if($banco->query($query)){
-        header('Location: ../index.php');
+        header("Location: ../index.php?c=$chave");
         exit();
     }
     else{

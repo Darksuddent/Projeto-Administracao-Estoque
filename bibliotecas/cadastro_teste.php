@@ -1,3 +1,4 @@
+
 <?php
 require_once '../connect.php';
 include_once 'funcoes.php';
@@ -34,7 +35,7 @@ $i = 0;
 
     
     $i = 0;
-    echo "<form action:'cadastro.php' method='post'><center><fieldset style='width: 800px; text-align: left; margin-left: 50px;'>
+    echo "<form action:'dados.php' method='post'><center><fieldset style='width: 800px; text-align: left; margin-left: 50px;'>
         <legend>Quais produtos serão cadastrados?</legend>";
 while(true){
     
@@ -42,8 +43,8 @@ while(true){
     $e[$i] = $data['cEAN'] = (strval($children->NFe->infNFe->det[$i]->prod->cEAN))?? null;
     $nc[$i] = $data['NCM'] = (strval($children->NFe->infNFe->det[$i]->prod->NCM))?? null;
     $c[$i] = $data['CEST'] = (strval($children->NFe->infNFe->det[$i]->prod->CEST))?? null;
-    //$quantidade = $data['uCom'] = (strval($children->NFe->infNFe->det->prod->uCom));
-    $t[$i] = $data['qCom'] = (strval($children->NFe->infNFe->det[$i]->prod->qCom))?? null;
+    $q[$i] = $data['qCom'] = (strval($children->NFe->infNFe->det[$i]->prod->qCom));
+    $t[$i] = $data['uCom'] = (strval($children->NFe->infNFe->det[$i]->prod->uCom))?? null;
     $em[$i] = $data['dhEmi'] = (strval($children->NFe->infNFe->ide->dhEmi))?? null;
 
     $nome = $n[$i];
@@ -52,14 +53,20 @@ while(true){
     $cest = $c[$i];
     $tipo = $t[$i];
     $emis = $em[$i];
+    $quantidade = $q[$i];
 
     $i++;
     if(is_null($nome) || empty($nome)){
         break;
     }else{
-        $query = "INSERT INTO banco (nome, ean, tipo, ncm, cest,  emissao) VALUES ('$nome', '$ean', '$tipo', '$ncm', '$cest', '$emis')";
+        $query = "INSERT INTO banco (nome, ean, tipo, ncm, cest,  emissao, estoque) VALUES ('$nome', '$ean', '$tipo', '$ncm', '$cest', '$emis', '$quantidade')";
         echo "
         <div>
+          <input type='hidden' value='$ean' name='ean'>
+          <input type='hidden' value='$tipo' name='tipo'>
+          <input type='hidden' value='$ncm' name='ncm'>
+          <input type='hidden' value='$cest' name='cest'>
+          <input type='hidden' value='$emis' name='emis'>
           <input type='checkbox' id='$nome' name='produtos' value='$nome' checked>
           <label for='$nome'>$nome</label>
         </div>

@@ -16,7 +16,7 @@
     <table>
         <div class="form_add">
             <h1>Adicionar Produto</h1>
-            <form method="post" action="bibliotecas/cadastro.php">
+            <form method="post" action="bibliotecas/dados.php">
                 Arquivo NFe: <input type="file" style='width: auto;' name="xml" id="xml" accept=".xml"><br><br>
                 <input type="submit" formmethod="post" value="Confirmar">
             </form>

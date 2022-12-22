@@ -1,14 +1,12 @@
 <?php
 require "connect.php";
-
-    $id = $_GET['id'];
-    $query = "DELETE FROM banco WHERE (`id` = '$id')";
-    if($banco->query($query)){
-        "Sucesso";
-    }
-    header("Location:index.php");
-    exit();
+        $id = intval($_GET['id']);
+        $chave = $_GET['c'];
+        $query = "DELETE FROM banco WHERE (`id` = '$id')";
+        echo $id;
+        if($banco->query($query)){
+            header("Location: index.php?c=$chave");
+            exit();
+        }
+        
 ?>
-
-
-  
