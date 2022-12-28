@@ -1,0 +1,40 @@
+input.orange {
+    color: white;
+    border: 1px solid #FB8F3D; 
+    background: -webkit-linear-gradient(top, #FDA251, #FB8F3D);
+    background: -moz-linear-gradient(top, #FDA251, #FB8F3D);
+    background: -ms-linear-gradient(top, #FDA251, #FB8F3D);
+    font-size: 20px;
+    padding: 10px;
+    margin: 15px;
+    cursor: pointer;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+input.orange:hover {
+    border: 1px solid #EB5200;
+    background: -webkit-linear-gradient(top, #FD924C, #F9760B); 
+    background: -moz-linear-gradient(top, #FD924C, #F9760B); 
+    background: -ms-linear-gradient(top, #FD924C, #F9760B); 
+    box-shadow: 0 1px #EFEFEF;
+}
+
+input.orange:active {
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.3);
+}
+
+div.corpo{
+    border-radius: 5px;
+    background-color: white;
+    width: 800px;
+    font-family: Arial;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+body{
+    background-color: rgb(104, 105, 159);
+}
+table{
+    text-align:center;
+}

@@ -1,11 +1,18 @@
 <?php
 require_once "../connect.php";
 
-$add = $_GET['add'];
+$id = $_GET['ean'];
 $chave = $_GET['c'];
+$add = $_GET['add'];
 $sub = $_GET['sub'];
-$id = $_GET['id'];
-$e = $_GET['e'];
+
+$query_mais_antigo = "SELECT id, estoque FROM banco WHERE id = $id ORDER BY emissao ASC limit 1";
+$res = $banco->query($query_mais_antigo);
+$obj = $res->fetch_object();
+
+$id = $obj->id; 
+$e = $obj->estoque;
+
 
 if($e == null){
     $e = 0;
@@ -19,10 +26,8 @@ if($add == 1 && $sub == 0){
         $e++;
     }
 }
-
-$query = "UPDATE banco SET estoque = '$e' WHERE id='$id'";
-
-if($banco->query($query)){
-    header("Location: ../index.php?c=$chave");
-    exit();
-}
+    $query = "UPDATE banco SET estoque = '$e' WHERE id='$id'";
+    $banco->query($query);
+    
+header("Location: ../produtos.php?c=$chave");
+exit();

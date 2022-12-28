@@ -5,14 +5,16 @@ div.corpo{
     font-family: Arial;
     margin: auto;
     padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 div.tabela{
     border-radius: 5px;
     background-color: white;
-    width: 1200px;
+    width: 1450px;
     font-family: Arial;
     margin: auto;
     padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 input{
     width: 45px;

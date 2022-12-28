@@ -48,7 +48,7 @@ if (!$xml) {
 $children = $xml->children();
 
 $data = array();
-$prod = $_POST['produtos'];
+$prod = $_POST['produtos.php'];
 $i = 0;
 /*while($i < max($children->NFe->infNFe->det->prod[])){
     $nome = $data['xProd'] = (strval($children->NFe->infNFe->det->prod[$i]->xProd));
@@ -77,6 +77,7 @@ while(true){
     $q[$i] = $data['qCom'] = (strval($children->NFe->infNFe->det[$i]->prod->qCom)) ?? null;
     $t[$i] = $data['uCom'] = (strval($children->NFe->infNFe->det[$i]->prod->uCom))?? null;
     $em[$i] = $data['dhEmi'] = (strval($children->NFe->infNFe->ide->dhEmi))?? null;
+    $chave = $data['chNFe'] = (strval($children->protNFe->infProt->chNFe))?? null;
 
     $nome = $n[$i];
     $ean = $e[$i];
@@ -105,7 +106,7 @@ while(true){
             CEST = <input type='text' name='cest".$i."' style='width: 230px; margin-left:47px;'value='$cest'>
           </p>
           <p>
-            Estoque = <input type='text' name='estoque".$i."' style='width: 230px; margin-left:36px;'value='$quantidade'>
+            Estoque = <input type='number' name='estoque".$i."' style='width: 230px; margin-left:36px;'value='$quantidade'>
           </p>
           <p>
             Tipo = <input type='text' name='tipo".$i."' style='width: 230px; margin-left:57px;'value='$tipo'>
@@ -114,11 +115,12 @@ while(true){
             Emissão NF = <input type='text' name='emis' style='width: 230px; margin-left:8px;'value='$emis'>
           </p>
           <p>
-            Custo Unit. = <input type='text' name='custo".$i."' style='width: 230px; margin-left:16px;'value=''>
+            Custo Unit. = <input type='number' name='custo".$i."' style='width: 230px; margin-left:16px;' step='.01'>
           </p>
           <p>
-            Validade = <input type='text' name='validade".$i."' style='width: 230px; margin-left:30px;'value=''>
+            Validade = <input type='text' name='validade".$i."' style='width: 230px; margin-left:30px;' step='.01'>
           </p>
+          <input type='hidden' name='chave' value='$chave'>
         ";
         }
         $i++;

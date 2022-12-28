@@ -15,7 +15,7 @@ if (!$xml) {
 $children = $xml->children();
 
 $data = array();
-$prod = $_POST['produtos'];
+$prod = $_POST['produtos.php'];
 $i = 0;
 /*while($i < max($children->NFe->infNFe->det->prod[])){
     $nome = $data['xProd'] = (strval($children->NFe->infNFe->det->prod[$i]->xProd));
@@ -36,7 +36,7 @@ $i = 0;
     
     $i = 0;
     echo "<form action:'dados.php' method='post'><center><fieldset style='width: 800px; text-align: left; margin-left: 50px;'>
-        <legend>Quais produtos serão cadastrados?</legend>";
+        <legend>Quais produtos.php serão cadastrados?</legend>";
 while(true){
     
     $n[$i] = $data['xProd'] = (strval($children->NFe->infNFe->det[$i]->prod->xProd)) ?? null;
@@ -67,7 +67,7 @@ while(true){
           <input type='hidden' value='$ncm' name='ncm'>
           <input type='hidden' value='$cest' name='cest'>
           <input type='hidden' value='$emis' name='emis'>
-          <input type='checkbox' id='$nome' name='produtos' value='$nome' checked>
+          <input type='checkbox' id='$nome' name='produtos.php' value='$nome' checked>
           <label for='$nome'>$nome</label>
         </div>
     ";
