@@ -11,17 +11,23 @@ $validade = $_POST['validade'] ?? null;
 $ncm = $_POST['ncm'] ?? null;
 $cest = $_POST['cest'] ?? null;
 $emissao = $_POST['emissao'] ?? null;
-
+$pag = $_GET['p'] ?? null;
+if($pag == 'kits'){
+    header("Location: ../kits.php?c=$chave");
+}else{
+    header("Location: ../produtos.php?c=$chave");
+}
 if(empty($nome) || empty($ean)){
     echo "<script>alert('Variáveis não podem ser vazias.')</script>";
 }else{
     $query = "UPDATE teste.banco SET nome = '$nome', ean = '$ean', tipo = '$tipo', ncm = '$ncm', cest = '$cest', estoque = '$estoque', validade = '$validade', custo = '$custo', emissao='$emissao' WHERE id = '$id';";
     if($banco->query($query)){
-        header("Location: ../produtos.php?c=$chave");
-        exit();
+        echo "Sucesso";
     }
     else{
         echo "<script>alert(Error: ".$sql."<br>".$banco->error.")</script>";
     }
 }
+
+exit();
 ?>

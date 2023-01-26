@@ -70,11 +70,13 @@ table.resultado td{
 }
 table.resultado tr:nth-child(even){
     background-color: #f2f2f2;
-    max-width: 200px;
+    max-width: 150px;
+    min-width: 50px;
 }
 table.resultado td:nth-child(1){
     width: 50px;
     max-width: 200px;
+    min-width: 50px;
 }
 table.resultado td:nth-child(3){
     width: 90px;

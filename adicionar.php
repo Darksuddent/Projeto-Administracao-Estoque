@@ -10,7 +10,7 @@
             width: auto;
         }
     </style>
-    <title>Document</title>
+    <title>Adicionar XML</title>
 </head>
 <body>
     <table>

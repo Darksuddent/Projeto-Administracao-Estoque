@@ -5,8 +5,8 @@ include_once 'funcoes.php';
 $i = $_POST['linhas'];
 $aux = 0;
 
-$chave = $_POST['chave'];
-
+$chave = $_POST['chave'] ?? 0.1;
+$custo_total = 0;
 while($i>=$aux){
     $n[$aux] = $_POST["nome".$aux.""];
     $e[$aux] = $_POST["ean".$aux.""];
@@ -26,20 +26,26 @@ while($i>=$aux){
     $estoque = $es[$aux];
     $validade = $val[$aux];
     $custo = $cst[$aux];
-    $result = $banco->query("SELECT * FROM banco WHERE ean = '$ean'");
+    $result = $banco->query("SELECT * FROM banco WHERE ean = '$ean' AND chave = '$chave'");
     $obj = $result->fetch_object();
-
-    if(is_null($nome) || empty($nome)){
-        break;
+    if(is_null($obj->chave) || empty($obj->chave)){
+        if(is_null($nome) || empty($nome)){
+            break;
+        }else{
+            $query = "INSERT INTO banco (nome, ean, tipo, ncm, cest, emissao, estoque, custo, validade, chave) VALUES ('$nome', '$ean', '$tipo', '$ncm', '$cest', '$emis', '$estoque', format('$custo', 2), '$validade', $chave)";
+            if($banco->query($query)){
+                    echo "O produto $nome foi inserido com sucesso!<br><br>";
+                    $custo_total+=$custo;
+                    $banco->query("UPDATE banco SET custo_total_nfe = $custo_total where chave = $chave");
+                }
+                else{
+                    echo "<script>alert(Error: ".$query."<br>".$banco->error.")</script>";
+                }
+            }
     }else{
-        $query = "INSERT INTO banco (nome, ean, tipo, ncm, cest, emissao, estoque, custo, validade, chave) VALUES ('$nome', '$ean', '$tipo', '$ncm', '$cest', '$emis', '$estoque', format('$custo', 2), '$validade', $chave)";
-        if($banco->query($query)){
-                echo "O produto $nome foi inserido com sucesso!<br><br>";
-            }
-            else{
-                echo "<script>alert(Error: ".$query."<br>".$banco->error.")</script>";
-            }
-        }
+        $aux++;
+        continue;
+    }
     $aux++;
 }
 header("Location: ../produtos.php");

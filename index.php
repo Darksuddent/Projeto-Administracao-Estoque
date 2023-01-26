@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel='icon' href='bibliotecas/imagens/images.png'>
+    <title>Menu Principal</title>
 </head>
 <body>
     <div class='corpo'>
@@ -16,6 +17,7 @@
         <center><table>
             <td><a href='produtos.php'><input type="button" class='orange' value="Lista de produtos"></a>
             <td><a href='lotes.php'><input type="button" class='orange' value="Lista de lotes"></a>
+            <td><a href='kits.php'><input type="button" class='orange' value="Lista de kits"></a>
         </table></center>
 
         <center><h2>Geradores</h2></center>

@@ -1,4 +1,5 @@
-<style>
+
+<title>Confirmação dos dados</title><style>
     body{
         background-color: rgb(104, 105, 159);
     }
@@ -115,7 +116,7 @@ while(true){
             Emissão NF = <input type='text' name='emis' style='width: 230px; margin-left:8px;'value='$emis'>
           </p>
           <p>
-            Custo Unit. = <input type='number' name='custo".$i."' style='width: 230px; margin-left:16px;' step='.01'>
+            Custo Unit. = <input type='number' name='custo".$i."' style='width: 230px; margin-left:16px;' step='.01' required>
           </p>
           <p>
             Validade = <input type='text' name='validade".$i."' style='width: 230px; margin-left:30px;' step='.01'>
