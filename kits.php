@@ -13,6 +13,7 @@
         $chave = $_GET['c'];
         $margem = $_GET['m'];
         $tipo = $_GET['t'];
+        $pag = 'kits';
         if(is_null($margem) || empty($margem)){
             $margem = 30;
         }
@@ -71,7 +72,7 @@
                         <td> $obj->emissao
                         <td style='background-color: rgba(195, 241, 149, 0.485); color: rgba(125, 219, 32, 1);'> ".preverMargem($obj->custo, $margem, $tipo)."
                         <td> $link
-                        <td> <a href='kits.php?edit=1&id=$obj->id&c=$chave&p=kits'><img src='bibliotecas/imagens/editar.png' class='supermini'></a><br>
+                        <td> <a href='kits.php?edit=1&id=$obj->id&c=$chave&p=$pag'><img src='bibliotecas/imagens/editar.png' class='supermini'></a><br>
                         <a href='confirmacao.php?id=$obj->id&c=$chave&num=$obj->numero_kit'><img src='bibliotecas/imagens/apagar.png'  style='padding-top: 5px;'class='supermini'></a>
                         <br><a href = 'produtos.php?c=".$obj->numero_kit."'><img style='padding-top: 5px;'class='supermini' src='bibliotecas/imagens/redirecionar.png'></a>";
                     }else{
@@ -90,7 +91,7 @@
                     <td> $obj->emissao
                     <td style='background-color: rgba(249, 138, 130, 0.422); color: rgb(235, 59, 46);'> ".preverMargem($obj->custo, $margem, $tipo)."
                     <td> $link
-                    <td> <a href='kits.php?edit=1&id=$obj->id&c=$chave'><img src='bibliotecas/imagens/editar.png' class='supermini'></a><br><a href='confirmacao.php?id=$obj->id&c=$chave&num=$obj->numero_kit'><img src='bibliotecas/imagens/apagar.png'  style='padding-top: 5px;'class='supermini'></a><br><a href = 'produtos.php?c=".$obj->numero_kit."'><img style='padding-top: 5px;'class='supermini' src='bibliotecas/imagens/redirecionar.png'></a>";
+                    <td> <a href='kits.php?edit=1&id=$obj->id&c=$chave&p=$pag'><img src='bibliotecas/imagens/editar.png' class='supermini'></a><br><a href='confirmacao.php?id=$obj->id&c=$chave&num=$obj->numero_kit'><img src='bibliotecas/imagens/apagar.png'  style='padding-top: 5px;'class='supermini'></a><br><a href = 'produtos.php?c=".$obj->numero_kit."'><img style='padding-top: 5px;'class='supermini' src='bibliotecas/imagens/redirecionar.png'></a>";
                     }
                         
                 }
@@ -106,14 +107,15 @@
                         "<form action='bibliotecas/editar.php' method='post'><tr>
                         <input type='hidden' name='id' value='$obj->id'>
                         <input type='hidden' name='c' value='$chave'>
+                        <input type='hidden' name='p' value='$pag'>
                         <td> <input name = 'nome' style='width: 100px;' class='nome' type='text' value='$obj->nome_kit'>
-                        <td> <input name='estoque' class='estoque' type='text' value='$obj->estoque'>
-                        <td> <input type='text' name='validade' value='$obj->validade'>
-                        <td> <input type='text' name='custo' value='$obj->custo'>
-                        <td> <input type='text' style='width: 70px;' name='ncm' value='$obj->ncm'>
-                        <td> <input type='text' style='width: 60px;' name='cest' value='$obj->cest'>
+                        <td> <input name='estoque' class='estoque' type='text' value='$obj->estoque' readonly>
+                        <td> <input type='text' name='validade' value='$obj->validade' readonly>
+                        <td> <input type='text' name='custo' value='$obj->custo' readonly>
+                        <td> <input type='text' style='width: 70px;' name='ncm' value='$obj->ncm' readonly>
+                        <td> <input type='text' style='width: 60px;' name='cest' value='$obj->cest' readonly>
                         <td> <input type='text' style='width: 80px;' name='emissao' value='$obj->emissao' readonly>
-                        <td style='background-color: rgba(195, 241, 149, 0.485); '> <input type='text' style='width: 60px; color: rgba(125, 219, 32, 1); background-color: rgba(195, 241, 149, 0.485); ' name='chave' value='".preverMargem($obj->custo, $margem, $tipo)."' readonly>
+                        <td style='background-color: rgba(195, 241, 149, 0.485); '> <input type='text' style='width: 60px; color: rgba(125, 219, 32, 1); -webkit-appearance: none; border: none;  background-color: rgba(195, 241, 149, 0.485); ' name='chave' value='".preverMargem($obj->custo, $margem, $tipo)."' readonly>
                         <td> $link
                         <td> <input type='image' src='bibliotecas/imagens/editar.png' class='supermini' formmethod='post'> <br><a href='confirmacao.php?id=$obj->id&c=$chave&num=$obj->numero_kit'><img src='bibliotecas/imagens/apagar.png' style='padding-top: 5px;'class='supermini' ></a><br><a href = 'produtos.php?c=".$obj->numero_kit."'><img style='padding-top: 5px;'class='supermini' src='bibliotecas/imagens/redirecionar.png'></a>";
                         }else{
@@ -121,15 +123,16 @@
                             "<form action='bibliotecas/editar.php' method='post'><tr>
                             <input type='hidden' name='id' value='$obj->id'>
                             <input type='hidden' name='c' value='$chave'>
+                            <input type='hidden' name='pag' value='$pag'>
                             <td> <input name = 'nome' style='width: 100px;' class='nome' type='text' value='$obj->nome_kit'>
-                            <td> <input type='text' name='ean' style='margin-left: 20px; width: 115px;'class='ean' value='$obj->ean'>
-                            <td> <input name='estoque' class='estoque' type='text' value='$obj->estoque'>
-                            <td> <input type='text' name='validade' value='$obj->validade'>
-                            <td> <input type='text' name='custo' value='$obj->custo'>
-                            <td> <input type='text' style='width: 70px;' name='ncm' value='$obj->ncm'>
-                            <td> <input type='text' style='width: 60px;' name='cest' value='$obj->cest'>
+                            <td> <input type='text' name='ean' style='margin-left: 20px; width: 115px;'class='ean' value='$obj->ean' readonly>
+                            <td> <input name='estoque' class='estoque' type='text' value='$obj->estoque' readonly>
+                            <td> <input type='text' name='validade' value='$obj->validade' readonly>
+                            <td> <input type='text' name='custo' value='$obj->custo' readonly>
+                            <td> <input type='text' style='width: 70px;' name='ncm' value='$obj->ncm' readonly>
+                            <td> <input type='text' style='width: 60px;' name='cest' value='$obj->cest' readonly>
                             <td> <input type='text' style='width: 80px;' name='emissao' value='$obj->emissao' readonly>
-                            <td style='background-color: rgba(249, 138, 130, 0.422); color: rgb(235, 59, 46);> <input type='text' style='width: 60px; background-color: rgba(249, 138, 130, 0.422); color: rgb(235, 59, 46);' name='chave' value='".preverMargem($obj->custo, $margem, $tipo)."' readonly>
+                            <td style='background-color: rgba(249, 138, 130, 0.422);> <input type='text' style='width: 60px; background-color: rgba(249, 138, 130, 0.422);  -webkit-appearance: none; border: none; color: rgb(235, 59, 46); color: rgb(235, 59, 46);' name='chave' value='".preverMargem($obj->custo, $margem, $tipo)."' readonly>
                             <td> $link
                             <td> <input type='image' src='bibliotecas/imagens/editar.png' class='supermini' formmethod='post'> <br><a href='confirmacao.php?id=$obj->id&c=$chave&num=$obj->numero_kit'><img src='bibliotecas/imagens/apagar.png' style='padding-top: 5px;'class='supermini' ></a><br><a href = 'produtos.php?c=".$obj->numero_kit."'><img style='padding-top: 5px;'class='supermini' src='bibliotecas/imagens/redirecionar.png'></a>";
                         }
@@ -150,7 +153,7 @@
                         <td>$obj->emissao
                         <td style='background-color: rgba(195, 241, 149, 0.485); color: rgba(125, 219, 32, 1);'>".preverMargem($obj->custo, $margem, $tipo)." 
                         <td>$link
-                        <td><a href='kits.php?edit=1&id=$obj->id'><img src='bibliotecas/imagens/editar.png' class='supermini'></a><br><a href='confirmacao.php?id=$obj->id&c=$chave&num=$obj->numero_kit'><img src='bibliotecas/imagens/apagar.png' style='padding-top: 5px;'class='supermini' ></a><br><a href = 'produtos.php?c=".$obj->numero_kit."'><img style='padding-top: 5px;'class='supermini' src='bibliotecas/imagens/redirecionar.png'></a>";
+                        <td><a href='kits.php?edit=1&id=$obj->id&c=$chave&p=$pag'><img src='bibliotecas/imagens/editar.png' class='supermini'></a><br><a href='confirmacao.php?id=$obj->id&c=$chave&num=$obj->numero_kit'><img src='bibliotecas/imagens/apagar.png' style='padding-top: 5px;'class='supermini' ></a><br><a href = 'produtos.php?c=".$obj->numero_kit."'><img style='padding-top: 5px;'class='supermini' src='bibliotecas/imagens/redirecionar.png'></a>";
                         }else{
                             echo "<tr>
                         <td> $obj->nome_kit  

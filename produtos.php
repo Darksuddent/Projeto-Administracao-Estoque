@@ -116,6 +116,7 @@
                         <td> <input type='text' style='width: 80px;' name='emissao' value='$obj->emissao' readonly>
                         <td style='background-color: rgba(195, 241, 149, 0.485); '> <input type='text' style='width: 60px; color: rgba(125, 219, 32, 1); background-color: rgba(195, 241, 149, 0.485); ' name='chave' value='".preverMargem($obj->custo, $margem, $tipo)."' readonly>
                         <td> $link
+                        <input type='hidden' value='kits' name='p'>
                         <td> <input type='image' src='bibliotecas/imagens/editar.png' class='supermini' formmethod='post'> <br><a href='confirmacao.php?id=$obj->id&c=$chave'><img src='bibliotecas/imagens/apagar.png' style='padding-top: 5px;'class='supermini' ></a>";
                         }else{
                             echo 
