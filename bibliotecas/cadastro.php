@@ -32,7 +32,7 @@ while($i>=$aux){
         if(is_null($nome) || empty($nome)){
             break;
         }else{
-            $query = "INSERT INTO banco (nome, ean, tipo, ncm, cest, emissao, estoque, custo, validade, chave) VALUES ('$nome', '$ean', '$tipo', '$ncm', '$cest', '$emis', '$estoque', format('$custo', 2), '$validade', $chave)";
+            $query = "INSERT INTO banco (nome, ean, tipo, ncm, cest, emissao, estoque, custo, validade, chave, estoque_original) VALUES ('$nome', '$ean', '$tipo', '$ncm', '$cest', '$emis', '$estoque', format('$custo', 2), '$validade', $chave, '$estoque')";
             if($banco->query($query)){
                     echo "O produto $nome foi inserido com sucesso!<br><br>";
                     $custo_total+=$custo;

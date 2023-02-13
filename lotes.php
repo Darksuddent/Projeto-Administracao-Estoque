@@ -21,9 +21,9 @@
             <?php
         $chave = $_GET['c'] ?? null;
         if(is_null($chave) || empty($chave)){
-            $query = 'SELECT @lote := @lote + 1 lote, chave, emissao, sum(custo) as custo, custo_total_nfe  FROM `banco`, (SELECT @lote := 0) m GROUP BY chave order by min(lote);';
+            $query = 'SELECT @lote := @lote + 1 lote, chave, emissao, sum(custo*estoque_original) as custo  FROM `banco`, (SELECT @lote := 0) m GROUP BY chave order by min(lote);';
         }else{
-            $query = "SELECT @lote := @lote + 1 lote, chave, emissao, sum(custo) as custo, custo_total_nfe  FROM `banco`, (SELECT @lote := 0) m where chave like '%$chave%' or nome like '%$chave%' or emissao like '%$chave%' GROUP BY chave order by min(lote)";
+            $query = "SELECT @lote := @lote + 1 lote, chave, emissao, sum(custo*estoque_original) as custo  FROM `banco`, (SELECT @lote := 0) m where chave like '%$chave%' or nome like '%$chave%' or emissao like '%$chave%' GROUP BY chave order by min(lote)";
         } 
         if($result = $banco->query($query)){
             while($obj = $result->fetch_object()){
@@ -40,7 +40,7 @@
                     <td> $obj->lote
                     <td> $obj->chave
                     <td> $obj->emissao
-                    <td> R$$obj->custo_total_nfe
+                    <td> R$$obj->custo
                     <td> <a href = 'produtos.php?c=".$obj->chave."'><img src='bibliotecas/imagens/redirecionar.png'></a>
                     ";
                 }
