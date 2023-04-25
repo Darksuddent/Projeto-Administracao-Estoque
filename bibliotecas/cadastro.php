@@ -16,7 +16,7 @@ while($i>=$aux){
     $es[$aux] = $_POST["estoque".$aux.""];
     $val[$aux] = $_POST["validade".$aux.""];
     $cst[$aux] = $_POST["custo".$aux.""];
-    $emis = $_POST["emis"];
+    $emis = $_POST["emis"] ?? null;
 
     $nome = $n[$aux];
     $ean = $e[$aux];
@@ -32,11 +32,10 @@ while($i>=$aux){
         if(is_null($nome) || empty($nome)){
             break;
         }else{
-            $query = "INSERT INTO banco (nome, ean, tipo, ncm, cest, emissao, estoque, custo, validade, chave) VALUES ('$nome', '$ean', '$tipo', '$ncm', '$cest', '$emis', '$estoque', format('$custo', 2), '$validade', $chave)";
+            $query = "INSERT INTO banco (nome, ean, tipo, ncm, cest, emissao, estoque, custo, validade, chave, estoque_original) VALUES ('$nome', '$ean', '$tipo', '$ncm', '$cest', '$emis', '$estoque', format('$custo', 2), '$validade', $chave, '$estoque')";
             if($banco->query($query)){
                     echo "O produto $nome foi inserido com sucesso!<br><br>";
                     $custo_total+=$custo;
-                    $banco->query("UPDATE banco SET custo_total_nfe = $custo_total where chave = $chave");
                 }
                 else{
                     echo "<script>alert(Error: ".$query."<br>".$banco->error.")</script>";

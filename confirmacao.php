@@ -2,6 +2,13 @@
   $id = $_GET['id'];
   $chave = $_GET['c'];
   $num = $_GET['num'];
+
+  if(is_null($num) || $num == '' || empty($num)){
+    $txt = 'apagar.php?id=<?php echo $id;?>&c=<?php echo $chave?>?>';
+  }else{
+    $txt = 'apagar.php?id=<?php echo $id;?>&c=<?php echo $chave?>&num=<?php echo $num?>';
+  }
+
 ?>
 
 <script type="text/javascript">

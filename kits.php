@@ -123,7 +123,7 @@
                             "<form action='bibliotecas/editar.php' method='post'><tr>
                             <input type='hidden' name='id' value='$obj->id'>
                             <input type='hidden' name='c' value='$chave'>
-                            <input type='hidden' name='pag' value='$pag'>
+                            <input type='hidden' name='p' value='$pag'>
                             <td> <input name = 'nome' style='width: 100px;' class='nome' type='text' value='$obj->nome_kit'>
                             <td> <input type='text' name='ean' style='margin-left: 20px; width: 115px;'class='ean' value='$obj->ean' readonly>
                             <td> <input name='estoque' class='estoque' type='text' value='$obj->estoque' readonly>
